@@ -10,17 +10,37 @@ class MHorse extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertHorse($idHorse, $title, $description )
+		function InsertHorse($name, $general_state, $description, $race, $level, $experience,
+							 $id_sickness, $id_injury, $id_parasite, $id_infrastucture, $id_state, $id_item,
+							 $id_horse_attrib)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO chapter (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO horse (name, general_state, description, race, level, 
+				experience, id_sickness, id_injury, id_parasite, id_infrastucture, id_state,
+				id_item, id_horse_attrib) 
+			VALUES (:name, :general_state, :description, :race, :level, :experience,
+					:id_sickness, :id_injury, :id_parasite, :id_infrastucture, :id_state
+					:id_item, :id_horse_attrib);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
+			$name = htmlspecialchars($name);
+			$general_state = htmlspecialchars($general_state);
 			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
+			$race = htmlspecialchars($race);
+			
+			$stmt->bindParam(":name", $name, PDO::PARAM_STR);
+			$stmt->bindParam(":general_state", $general_state, PDO::PARAM_STR);
 			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":race", $race, PDO::PARAM_STR);
+			$stmt->bindParam(":level", $level, PDO::PARAM_INT);
+			$stmt->bindParam(":experience", $experience, PDO::PARAM_INT);
+			$stmt->bindParam(":id_sickness", $id_sickness, PDO::PARAM_INT);
+			$stmt->bindParam(":id_injury", $id_injury, PDO::PARAM_INT);
+			$stmt->bindParam(":id_parasite", $id_parasite, PDO::PARAM_INT);
+			$stmt->bindParam(":id_infrastucture", $id_infrastucture, PDO::PARAM_INT);
+			$stmt->bindParam(":id_state", $id_state, PDO::PARAM_INT);
+			$stmt->bindParam(":id_item", $id_item, PDO::PARAM_INT);
+			$stmt->bindParam(":id_horse_attrib", $id_horse_attrib, PDO::PARAM_INT);
+
 			return $this->Insert($stmt);
 		}
 
