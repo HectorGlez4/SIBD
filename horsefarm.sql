@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2016 a las 16:59:16
+-- Tiempo de generación: 09-04-2016 a las 00:41:53
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -556,8 +556,8 @@ ALTER TABLE `bank_account`
 -- Filtros para la tabla `bank_historic`
 --
 ALTER TABLE `bank_historic`
-  ADD CONSTRAINT `bank_historic_ibfk_2` FOREIGN KEY (`id_bank_account`) REFERENCES `bank_account` (`id_bank_account`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bank_historic_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `player` (`id_account`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bank_historic_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `player` (`id_account`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bank_historic_ibfk_2` FOREIGN KEY (`id_bank_account`) REFERENCES `bank_account` (`id_bank_account`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `categ_items`
@@ -575,9 +575,9 @@ ALTER TABLE `competition`
 -- Filtros para la tabla `equestrain_center`
 --
 ALTER TABLE `equestrain_center`
-  ADD CONSTRAINT `equestrain_center_ibfk_3` FOREIGN KEY (`id_shop`) REFERENCES `shop` (`id_shop`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `equestrain_center_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `player` (`id_account`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `equestrain_center_ibfk_2` FOREIGN KEY (`id_infrastucture`) REFERENCES `infrastructure` (`id_infrastucture`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `equestrain_center_ibfk_2` FOREIGN KEY (`id_infrastucture`) REFERENCES `infrastructure` (`id_infrastucture`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `equestrain_center_ibfk_3` FOREIGN KEY (`id_shop`) REFERENCES `shop` (`id_shop`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `horse`
@@ -595,18 +595,18 @@ ALTER TABLE `horse`
 -- Filtros para la tabla `horse_club`
 --
 ALTER TABLE `horse_club`
-  ADD CONSTRAINT `horse_club_ibfk_5` FOREIGN KEY (`id_infrastucture`) REFERENCES `infrastructure` (`id_infrastucture`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `horse_club_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `player` (`id_account`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `horse_club_ibfk_2` FOREIGN KEY (`id_manager`) REFERENCES `manager` (`id_manager`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `horse_club_ibfk_3` FOREIGN KEY (`id_comp`) REFERENCES `competition` (`id_comp`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `horse_club_ibfk_4` FOREIGN KEY (`id_shop`) REFERENCES `shop` (`id_shop`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `horse_club_ibfk_4` FOREIGN KEY (`id_shop`) REFERENCES `shop` (`id_shop`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `horse_club_ibfk_5` FOREIGN KEY (`id_infrastucture`) REFERENCES `infrastructure` (`id_infrastucture`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `infrastructure`
 --
 ALTER TABLE `infrastructure`
-  ADD CONSTRAINT `infrastructure_ibfk_2` FOREIGN KEY (`id_shop`) REFERENCES `shop` (`id_shop`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `infrastructure_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `infrastructure_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `infrastructure_ibfk_2` FOREIGN KEY (`id_shop`) REFERENCES `shop` (`id_shop`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `inventary`
@@ -636,8 +636,8 @@ ALTER TABLE `mental_attrib`
 -- Filtros para la tabla `newspaper`
 --
 ALTER TABLE `newspaper`
-  ADD CONSTRAINT `newspaper_ibfk_2` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `newspaper_ibfk_1` FOREIGN KEY (`id_agenda`) REFERENCES `agenda` (`id_agenda`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `newspaper_ibfk_1` FOREIGN KEY (`id_agenda`) REFERENCES `agenda` (`id_agenda`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `newspaper_ibfk_2` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `other`
@@ -661,10 +661,10 @@ ALTER TABLE `planning`
 -- Filtros para la tabla `player`
 --
 ALTER TABLE `player`
-  ADD CONSTRAINT `player_ibfk_4` FOREIGN KEY (`id_horse`) REFERENCES `horse` (`id_horse`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `player_ibfk_1` FOREIGN KEY (`id_infrastucture`) REFERENCES `infrastructure` (`id_infrastucture`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `player_ibfk_2` FOREIGN KEY (`id_club`) REFERENCES `horse_club` (`id_club`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `player_ibfk_3` FOREIGN KEY (`id_bank_account`) REFERENCES `bank_account` (`id_bank_account`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `player_ibfk_3` FOREIGN KEY (`id_bank_account`) REFERENCES `bank_account` (`id_bank_account`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `player_ibfk_4` FOREIGN KEY (`id_horse`) REFERENCES `horse` (`id_horse`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `publicity`
