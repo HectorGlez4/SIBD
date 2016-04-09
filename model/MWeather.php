@@ -10,16 +10,16 @@ class MWeather extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertWeather($id_weather, $title, $description )
+		function InsertWeather($name, $description, $id_action )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO weather (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO weather (name, description, id_action) 
+			VALUES (:name, :description, :id_action);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
+			$name = htmlspecialchars($name);
 			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
+			$stmt->bindParam(":id_action", $id_action, PDO::PARAM_INT);
+			$stmt->bindParam(":name", $name, PDO::PARAM_STR);
 			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
 			return $this->Insert($stmt);
 		}
