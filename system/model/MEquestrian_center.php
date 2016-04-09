@@ -10,20 +10,17 @@ class MEquestriancenter extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertEquestriancenter($capacity, $id_account, $id_infrastucture, $id_shop)
+		function InsertEquestriancenter($id_center, $title, $description )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO equestrian_center (capacity, id_account, id_infrastucture, id_shop) 
-			VALUES (:capacity, :id_account, :id_infrastucture, id_shop);";
+			$sql = "INSERT INTO equestrian_center (id_formation, title, description) 
+			VALUES (:idFormation, :title, :description);";
 			$stmt = $this->PDO->prepare($sql);
-			$capacity = htmlspecialchars($capacity);
-			$id_account = htmlspecialchars($id_account);
-			$id_infrastucture = htmlspecialchars($id_infrastucture);
-			$id_shop = htmlspecialchars($id_shop);
-			$stmt->bindParam(":capacity", $capacity, PDO::PARAM_INT);
-			$stmt->bindParam(":id_account", $id_account, PDO::PARAM_INT);
-			$stmt->bindParam(":id_infrastucture", $id_infrastucture, PDO::PARAM_INT);
-			$stmt->bindParam(":id_shop", $id_shop, PDO::PARAM_INT);
+			$title = htmlspecialchars($title);
+			$description = htmlspecialchars($description);
+			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
+			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
+			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
 			return $this->Insert($stmt);
 		}
 
@@ -36,25 +33,3 @@ class MEquestriancenter extends Model
 			$stmt->bindParam(":id_center", $id_center, PDO::PARAM_INT);
 			return $this->Delete($stmt);
 		}
-		function UpdateEquestriancenter($capacity, $id_account, $id_infrastucture, $id_shop, $id_center)
-		{
-			$this->Connect();
-			$sql = "UPDATE equestrian_center SET capacity = :capacity, id_account = :id_account,
-			id_infrastucture = :id_infrastucture, id_shop = :id_shop
-			 WHERE id_center = :id_center ";
-			$stmt = $this->PDO->prepare($sql);
-			$capacity = htmlspecialchars($capacity);
-			$id_account = htmlspecialchars($id_account);
-			$id_infrastucture = htmlspecialchars($id_infrastucture);
-			$id_shop = htmlspecialchars($id_shop);
-			$stmt->bindParam(":capacity", $capacity, PDO::PARAM_INT);
-			$stmt->bindParam(":id_account", $id_account, PDO::PARAM_INT);
-			$stmt->bindParam(":id_infrastucture", $id_infrastucture, PDO::PARAM_INT);
-			$stmt->bindParam(":id_shop", $id_shop, PDO::PARAM_INT);
-			$stmt->bindParam(":id_center", $id_center, PDO::PARAM_INT);
-
-
-
-			return $this->Update($stmt);
-		}
-	}

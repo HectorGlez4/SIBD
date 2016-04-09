@@ -10,17 +10,13 @@ class MPlanning extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertPlanning($id_planning, $title, $description )
+		function InsertPlanning($id_autTask)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO planning (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO planning (id_autTask) 
+			VALUES (:id_autTask);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":id_autTask", $idFormation, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 

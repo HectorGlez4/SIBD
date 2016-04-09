@@ -23,8 +23,6 @@ class MCompetition extends Model
 			$stmt->bindParam(":involved_item", $involved_item, PDO::PARAM_STR);
 			$stmt->bindParam(":start_date", $start_date, PDO::PARAM_STR);
 			$stmt->bindParam(":end_date", $end_date, PDO::PARAM_STR);
-			$stmt->bindParam(":id_manager", $id_manager, PDO::PARAM_INT);
-
 			return $this->Insert($stmt);
 		}
 
@@ -37,22 +35,17 @@ class MCompetition extends Model
 			$stmt->bindParam(":id_comp", $id_comp, PDO::PARAM_INT);
 			return $this->Delete($stmt);
 		}
-		function UpdateCompetition($involved_item, $start_date, $end_date, $id_manager, $id_comp)
+		function UpdateCompetition($group, $id_item, $id_categ)
 		{
 			$this->Connect();
-			$sql = "UPDATE competition SET involved_item = :involved_item, start_date = :start_date,
-			end_date = :end_date, id_manager = :id_manager
-			 WHERE id_comp = :id_comp ";
+			$sql = "UPDATE categ_items SET group = :group, id_item = :id_item
+			 WHERE id_categ = :id_categ ";
 			$stmt = $this->PDO->prepare($sql);
-			$involved_item = htmlspecialchars($involved_item);
-			$start_date = htmlspecialchars($start_date);
-			$end_date = htmlspecialchars($end_date);
-			$id_manager = htmlspecialchars($id_manager);
-			$stmt->bindParam(":involved_item", $involved_item, PDO::PARAM_STR);
-			$stmt->bindParam(":start_date", $start_date, PDO::PARAM_STR);
-			$stmt->bindParam(":end_date", $end_date, PDO::PARAM_STR);
-			$stmt->bindParam(":id_manager", $id_manager, PDO::PARAM_INT);
-			$stmt->bindParam(":id_comp", $id_comp, PDO::PARAM_INT);
+			$group = htmlspecialchars($group);
+			$id_item = htmlspecialchars($id_item);
+			$stmt->bindParam(":group", $transaction, PDO::PARAM_INT);
+			$stmt->bindParam(":id_item", $id_account, PDO::PARAM_INT);
+			$stmt->bindParam(":id_categ", $id_bank_account, PDO::PARAM_INT);
 
 
 

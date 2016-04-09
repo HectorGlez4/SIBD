@@ -10,17 +10,13 @@ class MInventary extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertInventary($id_inventary, $title, $description )
+		function InsertInventary($id_item)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO inventary (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO inventary (id_item) 
+			VALUES (:id_item);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":id_item", $idFormation, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 

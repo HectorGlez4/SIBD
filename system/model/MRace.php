@@ -10,17 +10,15 @@ class MRace extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertRace($id_race, $title, $description )
+		function InsertRace($description, $id_article)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO race (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO race (description, id_article) 
+			VALUES (:description, :id_article);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
 			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
 			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":id_article", $id_article, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 

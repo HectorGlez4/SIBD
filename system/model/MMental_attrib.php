@@ -10,17 +10,16 @@ class MMentalattrib extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertMentalattrib($id_mental, $title, $description )
+		function InsertMentalattrib($sociability, $intelligence, $humeur, $id_horse_attrib )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO mental_attrib (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO mental_attrib (sociability, intelligence, humeur, id_horse_attrib) 
+			VALUES (:sociability, :intelligence, :humeur, :id_horse_attrib);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":sociability", $sociability, PDO::PARAM_INT);
+			$stmt->bindParam(":intelligence", $intelligence, PDO::PARAM_INT);
+			$stmt->bindParam(":humeur", $humeur, PDO::PARAM_INT);
+			$stmt->bindParam(":id_horse_attrib", $id_horse_attrib, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 

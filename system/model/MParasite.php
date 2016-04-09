@@ -10,16 +10,13 @@ class MParasite extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertParasite($id_parasite, $title, $description )
+		function InsertParasite($description)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO parasite (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO parasite (description) 
+			VALUES (:description);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
 			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
 			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
 			return $this->Insert($stmt);
 		}
