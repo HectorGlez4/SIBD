@@ -10,17 +10,18 @@ class MState extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertState($id_state, $title, $description )
+		function InsertState($health, $moral, $stress, $tiredness, $hunger, $cleanliness )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO state (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO state (health, moral, stress, tiredness, hunger, cleanliness) 
+			VALUES (:health, :moral, :stress, :tiredness, :hunger, :cleanliness);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":health", $health, PDO::PARAM_INT);
+			$stmt->bindParam(":moral", $moral, PDO::PARAM_INT);
+			$stmt->bindParam(":stress", $stress, PDO::PARAM_INT);
+			$stmt->bindParam(":tiredness", $tiredness, PDO::PARAM_INT);
+			$stmt->bindParam(":hunger", $hunger, PDO::PARAM_INT);
+			$stmt->bindParam(":cleanliness", $cleanliness, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 
