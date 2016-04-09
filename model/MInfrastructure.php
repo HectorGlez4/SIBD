@@ -10,17 +10,27 @@ class MInfrastructure extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertInfrastructure($id_infrastucture, $title, $description )
+		function InsertInfrastructure($price, $level, $group, $ressource_consumption, $items_capacity
+									$horses_capacity, $type, $description, $id_item, $id_shop )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO infrastructure (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO infrastructure (level, group, ressource_consumption, items_capacity
+									horses_capacity, type, description, id_item, id_shop) 
+			VALUES (:level, :group, :ressource_consumption, :items_capacity, :horses_capacity
+					:type, :description, :id_item, :id_shop);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
+			$type = htmlspecialchars($type);
 			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
+			$stmt->bindParam(":price", $price, PDO::PARAM_INT);
+			$stmt->bindParam(":level", $level, PDO::PARAM_INT);
+			$stmt->bindParam(":group", $group, PDO::PARAM_INT);
+			$stmt->bindParam(":ressource_consumption", $ressource_consumption, PDO::PARAM_INT);
+			$stmt->bindParam(":items_capacity", $items_capacity, PDO::PARAM_INT);
+			$stmt->bindParam(":horses_capacity", $horses_capacity, PDO::PARAM_INT);
+			$stmt->bindParam(":type", $type, PDO::PARAM_STR);
 			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":id_item", $id_item, PDO::PARAM_INT);
+			$stmt->bindParam(":id_shop", $id_shop, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 
