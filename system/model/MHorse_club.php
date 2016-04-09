@@ -4,7 +4,7 @@ class MHorseclub extends Model
 		function SelectHorseclub($id_club)
 		{
 			$this->Connect();
-			$sql = "Select * From horse_attrib WHERE id_club = :id_club";
+			$sql = "Select * From horse_club WHERE id_club = :id_club";
 			$stmt = $this->PDO->prepare($sql);
 			$stmt->bindParam(":id_club", $id_club, PDO::PARAM_INT);
 			return $this->Select($stmt);
@@ -13,7 +13,7 @@ class MHorseclub extends Model
 		function InsertHorseclub($id_club, $title, $description )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO horse_attrib (id_formation, title, description) 
+			$sql = "INSERT INTO horse_club (id_formation, title, description) 
 			VALUES (:idFormation, :title, :description);";
 			$stmt = $this->PDO->prepare($sql);
 			$title = htmlspecialchars($title);
@@ -28,7 +28,7 @@ class MHorseclub extends Model
 		function DeleteHorseclub($id_club)
 		{
 			$this->Connect();
-			$sql = "DELETE FROM horse_attrib WHERE id_club = :id_club ";
+			$sql = "DELETE FROM horse_club WHERE id_club = :id_club ";
 			$stmt = $this->PDO->prepare($sql);
 			$stmt->bindParam(":id_club", $id_club, PDO::PARAM_INT);
 			return $this->Delete($stmt);

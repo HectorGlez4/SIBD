@@ -1,9 +1,6 @@
 <?php
 
-/*
- * Charly ivan bernabe bernaeb
- * 2013
- */
+
 
 /*funci�n que permite la conexi�n a la base de datos, es invocada desde
  * las funciones de base de datos, insert, select, update, etc.
