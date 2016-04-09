@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `mental_attrib` (
 
 CREATE TABLE IF NOT EXISTS `newspaper` (
   `id_newspaper` int(5) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
+  `date_news` date NOT NULL,
   `news` varchar(300) NOT NULL,
   `specific_key_point` varchar(300) NOT NULL,
   `id_agenda` int(5) DEFAULT NULL,
