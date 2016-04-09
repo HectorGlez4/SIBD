@@ -18,6 +18,7 @@ class MHorseclub extends Model
 											id_manager, id_comp, id_shop, id_infrastucture) 
 			VALUES (:capacity, :infrastucture_list, :competition_list, :id_account,
 				:id_manager, :id_comp, :id_shop, :id_infrastucture);";
+
 			$stmt = $this->PDO->prepare($sql);
 			$infrastucture_list = htmlspecialchars($infrastucture_list);
 			$competition_list = htmlspecialchars($competition_list);
