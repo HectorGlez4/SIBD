@@ -10,17 +10,20 @@ class MItem extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertItem($id_item, $title, $description )
+		function InsertItem($level, $price, $description, $type, $id_shop )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO item (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO item (level, price, description, type, id_shop) 
+			VALUES (:level, :price, :description, :type , :id_shop);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
 			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
+			$type = htmlspecialchars($type);
+			$stmt->bindParam(":level", $level, PDO::PARAM_INT);
+			$stmt->bindParam(":price", $price, PDO::PARAM_INT);
 			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":type", $type, PDO::PARAM_STR);
+			$stmt->bindParam(":id_shop", $id_shop, PDO::PARAM_INT);
+
 			return $this->Insert($stmt);
 		}
 
