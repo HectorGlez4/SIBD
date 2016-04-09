@@ -10,17 +10,14 @@ class MTask extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertTask($id_task, $title, $description )
+		function InsertTask($action )
 		{
 			$this->Connect();
-			$sql = "INSERT INTO task (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO task (action) 
+			VALUES (:action);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$action = htmlspecialchars($action);
+			$stmt->bindParam(":action", $action, PDO::PARAM_STR);
 			return $this->Insert($stmt);
 		}
 
