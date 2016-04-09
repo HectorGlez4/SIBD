@@ -10,17 +10,13 @@ class MShop extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertShop($id_shop, $title, $description )
+		function InsertShop($element)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO shop (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO shop (element) 
+			VALUES (:element);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":element", $elementw, PDO::PARAM_STR);
 			return $this->Insert($stmt);
 		}
 
