@@ -10,17 +10,13 @@ class MManager extends Model
 			return $this->Select($stmt);
 		}
 
-		function InsertManager($id_manager, $title, $description )
+		function InsertManager($id_account)
 		{
 			$this->Connect();
-			$sql = "INSERT INTO manager (id_formation, title, description) 
-			VALUES (:idFormation, :title, :description);";
+			$sql = "INSERT INTO manager (id_account) 
+			VALUES (:id_account);";
 			$stmt = $this->PDO->prepare($sql);
-			$title = htmlspecialchars($title);
-			$description = htmlspecialchars($description);
-			$stmt->bindParam(":idFormation", $idFormation, PDO::PARAM_INT);
-			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-			$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+			$stmt->bindParam(":id_account", $id_account, PDO::PARAM_INT);
 			return $this->Insert($stmt);
 		}
 
